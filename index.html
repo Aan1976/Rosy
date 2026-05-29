@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rosy.lu | Luxury Massage Experience</title>
+  <meta name="description" content="Rosy.lu offers elegant massage and wellness experiences in Luxembourg." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f5f2;
+      --card: rgba(255,255,255,0.72);
+      --primary: #8c5e58;
+      --dark: #2d2624;
+      --gold: #c9a66b;
+      --text: #5c5552;
+      --white: #ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,0.08);
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(201,166,107,0.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(140,94,88,0.12), transparent 30%);
+      z-index: -1;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(18px);
+      background: rgba(248,245,242,0.78);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--dark);
+      letter-spacing: 1px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #a77770);
+      color: white;
+      box-shadow: 0 10px 30px rgba(140,94,88,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(140,94,88,0.35);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5.8rem);
+      line-height: 0.95;
+      color: var(--dark);
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 36px;
+      max-width: 540px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.85));
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-height: 680px;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-box {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      right: 30px;
+      padding: 28px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(18px);
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .floating-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--dark);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    section {
+      padding: 120px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-title p {
+      max-width: 720px;
+      margin: auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+      backdrop-filter: blur(12px);
+      transition: 0.3s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .service-number {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .experience {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      align-items: center;
+    }
+
+    .experience img {
+      width: 100%;
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      min-height: 520px;
+      object-fit: cover;
+    }
+
+    .experience-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--dark);
+      margin-bottom: 28px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .feature-item {
+      background: rgba(255,255,255,0.6);
+      padding: 20px 24px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .cta {
+      background: linear-gradient(135deg, #8c5e58, #5e413d);
+      border-radius: 40px;
+      padding: 80px 50px;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      max-width: 700px;
+      margin: 0 auto 36px;
+      opacity: 0.9;
+    }
+
+    footer {
+      padding: 50px 0 60px;
+      text-align: center;
+      color: #7c7370;
+      font-size: 0.95rem;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .experience {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 140px;
+      }
+
+      .hero-card {
+        min-height: 500px;
+      }
+
+      .experience-content h2 {
+        font-size: 3rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+
+      .section-title h2,
+      .cta h2 {
+        font-size: 2.8rem;
+      }
+
+      .service-card,
+      .floating-box,
+      .cta {
+        padding: 28px;
+      }
+
+      .experience-content h2 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Rosy<span>.</span>lu</a>
+
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact" class="btn btn-primary">Book Appointment</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div>
+          <span class="eyebrow">Luxury Wellness in Luxembourg</span>
+          <h1>Elegant Massage & Relaxation Experience</h1>
+          <p>
+            Discover a refined atmosphere dedicated to relaxation, balance, and wellbeing.
+            Rosy.lu blends modern luxury with calming rituals designed to restore body and mind.
+          </p>
+
+          <a href="#contact" class="btn btn-primary">Reserve Your Session</a>
+        </div>
+
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1400&auto=format&fit=crop" alt="Luxury massage atmosphere">
+
+          <div class="floating-box">
+            <h3>Premium Wellness</h3>
+            <p>
+              Soft ambiance, professional care, and personalized treatments in a calm and elegant environment.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+
+        <div class="section-title">
+          <span class="eyebrow">Our Treatments</span>
+          <h2>Signature Experiences</h2>
+          <p>
+            Carefully curated treatments inspired by serenity, comfort, and modern wellness traditions.
+          </p>
+        </div>
+
+        <div class="services-grid">
+
+          <div class="service-card">
+            <div class="service-number">01</div>
+            <h3>Relaxing Massage</h3>
+            <p>
+              Gentle techniques and soothing pressure designed to release stress and improve relaxation.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-number">02</div>
+            <h3>Deep Tissue</h3>
+            <p>
+              Focused muscle therapy ideal for relieving tension and restoring physical comfort.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-number">03</div>
+            <h3>Aromatherapy</h3>
+            <p>
+              Essential oils and calming ambiance combined for a deeply restorative wellness ritual.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-number">04</div>
+            <h3>Private Sessions</h3>
+            <p>
+              Personalized treatments tailored to your preferences in a peaceful private setting.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container experience">
+
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1400&auto=format&fit=crop" alt="Spa experience">
+
+        <div class="experience-content">
+          <span class="eyebrow">Why Choose Rosy.lu</span>
+          <h2>Designed Around Comfort & Elegance</h2>
+
+          <p>
+            Every detail at Rosy.lu is created to offer a peaceful escape from daily stress.
+            From the calming atmosphere to the personalized care, your comfort always comes first.
+          </p>
+
+          <div class="feature-list">
+
+            <div class="feature-item">
+              <strong>Elegant Atmosphere</strong>
+              Refined interior styling with soft lighting and relaxing aesthetics.
+            </div>
+
+            <div class="feature-item">
+              <strong>Professional Care</strong>
+              Thoughtful wellness experiences delivered with attention and discretion.
+            </div>
+
+            <div class="feature-item">
+              <strong>Premium Experience</strong>
+              High-end comfort designed for complete relaxation and tranquility.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta" id="contact">
+          <span class="eyebrow" style="color: #f3d8aa;">Book Your Moment of Relaxation</span>
+          <h2>Experience Rosy.lu</h2>
+
+          <p>
+            Contact us today to reserve your private wellness session in Luxembourg.
+            We welcome you into a calm, elegant, and relaxing environment.
+          </p>
+
+          <a href="mailto:contact@rosy.lu" class="btn btn-primary" style="background: white; color: #5e413d;">
+            contact@rosy.lu
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-logo">Rosy.lu</div>
+      <p>
+        Luxury massage & wellness experience in Luxembourg.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
